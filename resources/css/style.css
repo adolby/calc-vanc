@@ -210,7 +210,3 @@ nav ul li:last-of-type a {
     flex-flow: row wrap;
   }
 }
-
-/* Laptop / Desktop */
-@media all and (min-width: 75rem) {
-}
