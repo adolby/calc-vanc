@@ -9,16 +9,16 @@
                 24 [750 1000 1250]})
 
 (defn bmi
-  "Body mass index"
+  "Body mass index in kg/(cm)^2"
   [height weight]
   (if (not= height 0)
     (/ weight (squared height))
     0))
 
 (defn creatinine-clearance
-  "Estimated creatinine clearance (in mL/min)"
+  "Estimated creatinine clearance in (kg-cm)^(1/2)"
   [gender age height abw s-cr]
-  (let [bsa (/ (sqrt (* height abw)) 60)] ;; (kg-cm)^(1/2)
+  (let [bsa (/ (sqrt (* height abw)) 60)]
     (if (and (not= bsa 0) (not= s-cr 0))
       (let [cr-cl (/ (* (- 140 age) abw) (* (* 72 s-cr)) (/ 1.73 bsa))]
         (if (= gender "female")
@@ -32,7 +32,7 @@
   (+ (* 0.00083 cr-cl) 0.0044))
 
 (defn peak-concentration
-  "Calculate peak-concentration"
+  "Calculate peak-concentration in µg/mL"
   [obese k x-0 t T tau]
   (let [v-d (if obese 0.8 0.6)]
     (if (not= k 0)
@@ -41,7 +41,7 @@
       0)))
 
 (defn trough-concentration
-  "Calculate trough concentration"
+  "Calculate trough concentration in µg/mL"
   [c-peak k t T tau]
   (let [t-prime (- tau t T)]
     (* c-peak (exp (* (- k) t-prime)))))
@@ -121,5 +121,3 @@
     {:creatinine-clearance cr-cl
      :half-life h-l
      :concentrations concentrations}))
-
-;;(info (into [] (calculate "male" 36 151 151 true 0.67 35 35)))

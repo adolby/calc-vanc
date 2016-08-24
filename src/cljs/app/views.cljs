@@ -68,7 +68,9 @@
           [:h3.indent "Calculation Results"]
           [:ul.row
             [:li "Creatinine clearance"]
-            [:li (:creatinine-clearance @results)]]
+            [:li (:creatinine-clearance @results)
+                 " (kg-cm)"
+                 [:sup "1/2"]]]
           [:ul.row
             [:li "Half-life"]
             [:li (:half-life @results)]]
@@ -91,22 +93,6 @@
                                [:li c-trough]]]])
                        value)]])
             (:concentrations @results))]))))
-
-  ; (let [results (subscribe [:results])]
-  ;   (fn []
-  ;     [:section.cards
-  ;       (map-indexed
-  ;         (fn [card-idx result]
-  ;           [:div.card
-  ;             {:key (str "card-" card-idx)}
-  ;             (map-indexed
-  ;               (fn [row-idx [label value]]
-  ;                 [:ul.row
-  ;                   {:key (str "card-" card-idx "-row-" row-idx)}
-  ;                   [:li (get labels label)]
-  ;                   [:li value]])
-  ;               result)])
-  ;         @results)])))
 
 (defn main-page
   []
