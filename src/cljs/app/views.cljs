@@ -75,15 +75,15 @@
             [:li "Half-life"]
             [:li (:half-life @results)]]
           (map-indexed
-            (fn [row-idx [label value]]
+            (fn [q-idx [q-label value]]
               [:ul.row
-                {:key (str "row-" row-idx)}
-                [:li (str "q" label)]
+                {:key (str "q-" q-idx)}
+                [:li (str "q" q-label)]
                 [:li (map-indexed
-                       (fn [row-idx [label [c-peak c-trough]]]
+                       (fn [dose-idx [dose-label [c-peak c-trough]]]
                          [:ul.row
-                           {:key (str "row-" row-idx)}
-                           [:li label]
+                           {:key (str "dose-" dose-idx)}
+                           [:li dose-label]
                            [:li
                              [:ul.row
                                [:li "C" [:sub "peak"]]
