@@ -43,7 +43,7 @@
                    :id "serum-creatinine"
                    :name "serum-creatinine"}]]
         [:li
-          [:label {:for "infusion-time"} "Infusion time (seconds)"]
+          [:label {:for "infusion-time"} "Infusion time (h)"]
           [:input {:type "text"
                    :id "infusion-time"
                    :name "infusion-time"}]]
@@ -51,7 +51,7 @@
           [:label {:for "c-peak-time"}
                   "Time from infusion to C"
                   [:sub "peak"]
-                  " drawn (seconds)"]
+                  " drawn (h)"]
           [:input {:type "text"
                    :id "c-peak-time"
                    :name "c-peak-time"}]]
