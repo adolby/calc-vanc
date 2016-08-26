@@ -8,7 +8,7 @@
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (defn field-values
-  "Value of fields in input form"
+  "Value of field in input form"
   [names]
   (mapv
     #(.-value (dom/getElement %))
@@ -66,24 +66,23 @@
       (when (some? @results)
         [:div.card
           [:h3.indent "Calculation Results"]
-          [:ul.row
+          [:ul.row.indent
             [:li "Creatinine clearance"]
             [:li (:creatinine-clearance @results)
                  " (kg-cm)"
                  [:sup "1/2"]]]
-          [:ul.row
+          [:ul.row.indent
             [:li "Half-life"]
             [:li (:half-life @results)]]
           (map-indexed
             (fn [q-idx [q-label value]]
-              [:ul.row
+              [:ul.indent
                 {:key (str "q-" q-idx)}
-                [:li (str "q" q-label)]
                 [:li (map-indexed
                        (fn [dose-idx [dose-label [c-peak c-trough]]]
-                         [:ul.row
+                         [:ul
                            {:key (str "dose-" dose-idx)}
-                           [:li dose-label]
+                           [:li.static-element (str "q" q-label " - " dose-label)]
                            [:li
                              [:ul.row
                                [:li "C" [:sub "peak"]]
