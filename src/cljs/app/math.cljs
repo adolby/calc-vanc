@@ -10,3 +10,9 @@
 
 (defn sqrt [x]
   (.sqrt js/Math x))
+
+(defn round [x]
+  (.round js/Math x))
+
+(defn not-a-number? [x]
+  (js/isNaN x))

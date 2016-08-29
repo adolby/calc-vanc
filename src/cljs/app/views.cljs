@@ -43,19 +43,6 @@
                    :id "serum-creatinine"
                    :name "serum-creatinine"}]]
         [:li
-          [:label {:for "infusion-time"} "Infusion time (h)"]
-          [:input {:type "text"
-                   :id "infusion-time"
-                   :name "infusion-time"}]]
-        [:li
-          [:label {:for "c-peak-time"}
-                  "Time from infusion to C"
-                  [:sub "peak"]
-                  " drawn (h)"]
-          [:input {:type "text"
-                   :id "c-peak-time"
-                   :name "c-peak-time"}]]
-        [:li
           [:button "Calculate"]]]]])
 
 (defn results-card
@@ -72,8 +59,12 @@
                  " (kg-cm)"
                  [:sup "1/2"]]]
           [:ul.row.indent
+            [:li "Elimination rate constant (k)"]
+            [:li (:k @results)]]
+          [:ul.row.indent
             [:li "Half-life"]
-            [:li (:half-life @results)]]
+            [:li (:half-life @results)
+                 " hours"]]
           (map-indexed
             (fn [q-idx [q-label value]]
               [:ul.indent
@@ -82,7 +73,9 @@
                        (fn [dose-idx [dose-label [c-peak c-trough]]]
                          [:ul
                            {:key (str "dose-" dose-idx)}
-                           [:li.static-element (str "q" q-label " - " dose-label)]
+                           [:li.static-element
+                             (str "q" q-label " - "
+                                  dose-label "mg vancomycin")]
                            [:li
                              [:ul.row
                                [:li "C" [:sub "peak"]]
@@ -109,8 +102,7 @@
         (dispatch
           [:calculate
             (field-values ["gender" "age" "height" "weight"
-                           "serum-creatinine" "infusion-time"
-                           "c-peak-time"])])))))
+                           "serum-creatinine"])])))))
 
 (defn render-page
   []
