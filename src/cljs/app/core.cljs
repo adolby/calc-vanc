@@ -6,4 +6,4 @@
 (defn init
   []
   (views/render-page)
-  (views/listen-submit-button))
+  (views/listen-submit))

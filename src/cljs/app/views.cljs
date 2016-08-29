@@ -89,11 +89,11 @@
 (defn main-page
   []
   [:section.cards
-    [input-card]
-    [results-card]])
+    [input-card]])
+    ;;[results-card]])
 
 ;; Public interface
-(defn listen-submit-button
+(defn listen-submit
   []
   (let [input (listen (dom/getElement "calculate") "submit")]
     (go
